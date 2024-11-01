@@ -1,24 +1,24 @@
-version: '3.8'
 services:
   backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    environment:
+      CHROMADB_HOST: chromadb
+      CHROMADB_PORT: 8001
     depends_on:
       - chromadb
 
   chromadb:
     image: python:3.8-slim
     working_dir: /app
-    command: chroma run --host 0.0.0.0 --port 8000 --path chromadb
+    command: chroma run --host 0.0.0.0 --port 8001 --path chromadb
     ports:
-      - "8000:8000"
+      - "8001:8001"  
     volumes:
       - .:/app
-    depends_on:
-      - backend
 
   frontend:
     build:
