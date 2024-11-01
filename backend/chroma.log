@@ -1,0 +1,97 @@
+[33mWARNING[0m:  [28-10-2024 22:02:01] chroma_server_nofile is not supported on Windows. chroma_server_nofile will not be set.
+[32mINFO[0m:     [28-10-2024 22:02:01] Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[36mDEBUG[0m:    [28-10-2024 22:02:01] Starting component System
+[36mDEBUG[0m:    [28-10-2024 22:02:01] Starting component OpenTelemetryClient
+[36mDEBUG[0m:    [28-10-2024 22:02:01] Starting component SqliteDB
+[36mDEBUG[0m:    [28-10-2024 22:02:02] Starting component QuotaEnforcer
+[36mDEBUG[0m:    [28-10-2024 22:02:02] Starting component Posthog
+[36mDEBUG[0m:    [28-10-2024 22:02:02] Starting component SimpleRateLimitEnforcer
+[36mDEBUG[0m:    [28-10-2024 22:02:02] Starting component LocalSegmentManager
+[36mDEBUG[0m:    [28-10-2024 22:02:02] Starting component SegmentAPI
+[32mINFO[0m:     [28-10-2024 22:02:02] Started server process [[36m14624[0m]
+[32mINFO[0m:     [28-10-2024 22:02:02] Waiting for application startup.
+[32mINFO[0m:     [28-10-2024 22:02:02] Application startup complete.
+[32mINFO[0m:     [28-10-2024 22:02:02] Uvicorn running on [1mhttp://localhost:8000[0m (Press CTRL+C to quit)
+[32mINFO[0m:     [28-10-2024 22:02:14] Backing off send_request(...) for 0.8s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B2214A0740>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:02:15] Backing off send_request(...) for 0.2s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B2214A26C0>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:02:15] Backing off send_request(...) for 0.8s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B2214A29F0>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[31mERROR[0m:    [28-10-2024 22:02:16] Giving up send_request(...) after 4 tries (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B2214A2D50>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[33mWARNING[0m:  [28-10-2024 22:02:29] chroma_server_nofile is not supported on Windows. chroma_server_nofile will not be set.
+[32mINFO[0m:     [28-10-2024 22:02:29] Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[36mDEBUG[0m:    [28-10-2024 22:02:29] Starting component System
+[36mDEBUG[0m:    [28-10-2024 22:02:29] Starting component OpenTelemetryClient
+[36mDEBUG[0m:    [28-10-2024 22:02:29] Starting component SqliteDB
+[36mDEBUG[0m:    [28-10-2024 22:02:29] Starting component QuotaEnforcer
+[36mDEBUG[0m:    [28-10-2024 22:02:29] Starting component Posthog
+[36mDEBUG[0m:    [28-10-2024 22:02:29] Starting component SimpleRateLimitEnforcer
+[36mDEBUG[0m:    [28-10-2024 22:02:29] Starting component LocalSegmentManager
+[36mDEBUG[0m:    [28-10-2024 22:02:29] Starting component SegmentAPI
+[32mINFO[0m:     [28-10-2024 22:02:29] Started server process [[36m20148[0m]
+[32mINFO[0m:     [28-10-2024 22:02:29] Waiting for application startup.
+[32mINFO[0m:     [28-10-2024 22:02:29] Application startup complete.
+[32mINFO[0m:     [28-10-2024 22:02:29] Uvicorn running on [1mhttp://localhost:8000[0m (Press CTRL+C to quit)
+[32mINFO[0m:     [28-10-2024 22:02:30] Backing off send_request(...) for 0.2s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CDE10800>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:02:30] Backing off send_request(...) for 0.7s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CDE12420>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:02:31] Backing off send_request(...) for 0.0s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CDE12780>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[31mERROR[0m:    [28-10-2024 22:02:31] Giving up send_request(...) after 4 tries (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CDE12AB0>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:03:00] 127.0.0.1:61819 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [28-10-2024 22:03:00] 127.0.0.1:61819 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [28-10-2024 22:03:22] 127.0.0.1:61848 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [28-10-2024 22:03:34] Backing off send_request(...) for 0.4s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CDE13170>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:03:34] Backing off send_request(...) for 0.4s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CE1EC710>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:03:34] Backing off send_request(...) for 1.5s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CE1EC560>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[31mERROR[0m:    [28-10-2024 22:03:36] Giving up send_request(...) after 4 tries (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CE1ECF50>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[36mDEBUG[0m:    [28-10-2024 22:04:08] Starting component PersistentLocalHnswSegment
+[32mINFO[0m:     [28-10-2024 22:04:08] 127.0.0.1:61895 - "POST /api/v1/collections/bac305b7-ffca-491b-9fd2-703eaa3a3743/query HTTP/1.1" 200
+[32mINFO[0m:     [28-10-2024 22:04:09] Backing off send_request(...) for 0.8s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CE217380>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:04:21] Backing off send_request(...) for 0.5s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CE217DD0>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[32mINFO[0m:     [28-10-2024 22:04:22] Backing off send_request(...) for 0.7s (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CE1ECB00>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[31mERROR[0m:    [28-10-2024 22:04:22] Giving up send_request(...) after 4 tries (requests.exceptions.ConnectionError: HTTPSConnectionPool(host='us.i.posthog.com', port=443): Max retries exceeded with url: /batch/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000206CE224680>: Failed to resolve 'us.i.posthog.com' ([Errno 11001] getaddrinfo failed)")))
+[33mWARNING[0m:  [01-11-2024 10:08:40] chroma_server_nofile is not supported on Windows. chroma_server_nofile will not be set.
+[32mINFO[0m:     [01-11-2024 10:08:41] Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[36mDEBUG[0m:    [01-11-2024 10:08:41] Starting component System
+[36mDEBUG[0m:    [01-11-2024 10:08:41] Starting component OpenTelemetryClient
+[36mDEBUG[0m:    [01-11-2024 10:08:41] Starting component SqliteDB
+[36mDEBUG[0m:    [01-11-2024 10:08:41] Starting component QuotaEnforcer
+[36mDEBUG[0m:    [01-11-2024 10:08:41] Starting component Posthog
+[36mDEBUG[0m:    [01-11-2024 10:08:41] Starting component SimpleRateLimitEnforcer
+[36mDEBUG[0m:    [01-11-2024 10:08:41] Starting component LocalSegmentManager
+[36mDEBUG[0m:    [01-11-2024 10:08:41] Starting component SegmentAPI
+[32mINFO[0m:     [01-11-2024 10:08:41] Started server process [[36m10464[0m]
+[32mINFO[0m:     [01-11-2024 10:08:41] Waiting for application startup.
+[32mINFO[0m:     [01-11-2024 10:08:41] Application startup complete.
+[32mINFO[0m:     [01-11-2024 10:08:41] Uvicorn running on [1mhttp://localhost:8000[0m (Press CTRL+C to quit)
+[32mINFO[0m:     [01-11-2024 10:08:50] ::1:57883 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:08:50] ::1:57883 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:08:50] ::1:57884 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:09:09] ::1:57900 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:09:09] ::1:57900 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [01-11-2024 10:09:09] Collection buildragwithpython already exists, returning existing collection.
+[32mINFO[0m:     [01-11-2024 10:09:09] ::1:57901 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:09:47] ::1:57925 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:09:47] ::1:57925 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [01-11-2024 10:09:47] Collection buildragwithpython already exists, returning existing collection.
+[32mINFO[0m:     [01-11-2024 10:09:47] ::1:57926 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:09:59] ::1:57935 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:09:59] ::1:57935 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [01-11-2024 10:09:59] Collection buildragwithpython already exists, returning existing collection.
+[32mINFO[0m:     [01-11-2024 10:09:59] ::1:57936 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:10:00] ::1:57937 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:10:00] ::1:57937 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [01-11-2024 10:10:00] Collection buildragwithpython already exists, returning existing collection.
+[32mINFO[0m:     [01-11-2024 10:10:00] ::1:57938 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[36mDEBUG[0m:    [01-11-2024 10:10:02] Starting component PersistentLocalHnswSegment
+[32mINFO[0m:     [01-11-2024 10:10:02] ::1:57938 - "POST /api/v1/collections/ed235a36-691b-4e38-9961-7e88c4bf2be1/query HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:11:08] ::1:57987 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:11:08] ::1:57987 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [01-11-2024 10:11:08] Collection buildragwithpython already exists, returning existing collection.
+[32mINFO[0m:     [01-11-2024 10:11:08] ::1:57988 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:11:27] ::1:57997 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:11:27] ::1:57997 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [01-11-2024 10:11:27] Collection buildragwithpython already exists, returning existing collection.
+[32mINFO[0m:     [01-11-2024 10:11:27] ::1:57998 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:11:30] ::1:58000 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:11:30] ::1:58000 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [01-11-2024 10:11:30] Collection buildragwithpython already exists, returning existing collection.
+[32mINFO[0m:     [01-11-2024 10:11:30] ::1:58001 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [01-11-2024 10:11:32] ::1:58001 - "POST /api/v1/collections/ed235a36-691b-4e38-9961-7e88c4bf2be1/query HTTP/1.1" 200
