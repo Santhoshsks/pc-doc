@@ -29,17 +29,16 @@ const config = {
   customComponents: {
     header: () => (
       <div
-        style={{
-          backgroundColor: 'grey',
-          padding: '10px 15px',
-          borderRadius: '8px',
-          color: '#ffffff',
-          fontWeight: 'bold',
-          fontSize: '1.1rem',
-          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-          textAlign: 'center',
-        }}
-      >
+      style={{
+        background: 'linear-gradient(90deg, #b0b0b0, #444444)', 
+        padding: '15px 15px', 
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontSize: '1rem', 
+        textAlign: 'center',
+        borderRadius: '0', 
+      }}
+    >
         Welcome to {botName}
       </div>
     ),
