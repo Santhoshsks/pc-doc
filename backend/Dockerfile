@@ -8,4 +8,4 @@ EXPOSE 8000
 
 FROM backend-base AS final
 
-CMD ["python3", "app/main.py"]
+CMD ["python3", "app/app.py"]

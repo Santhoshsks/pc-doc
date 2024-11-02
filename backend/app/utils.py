@@ -57,5 +57,5 @@ def readtext(path):
 
 def getconfig():
   config = configparser.ConfigParser()
-  config.read('config.ini')
+  config.read('backend\\app\\config.ini')
   return dict(config.items("main"))
