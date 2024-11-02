@@ -4,6 +4,8 @@ const MessageParser = ({ children, actions }) => {
   const parse = (message) => {
     if (message.includes('hello')) {
       actions.handleHello();
+    } else {
+      actions.handleMessageSend(message, 'Llama3-7B');
     }
   };
 

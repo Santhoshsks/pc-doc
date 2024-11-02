@@ -5,4 +5,5 @@ ollama
 python_magic
 Requests
 pypdf
-streamlit
+flask
+flask-cors
