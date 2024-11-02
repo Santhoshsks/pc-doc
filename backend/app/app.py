@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-chroma = chromadb.PersistentClient(path="./chromadb")
+chroma = chromadb.PersistentClient(path="./backend/app/chromadb")
 collection = chroma.get_or_create_collection("buildragwithpython")
 
 models = {

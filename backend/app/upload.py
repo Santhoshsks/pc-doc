@@ -6,7 +6,7 @@ from langchain_community.document_loaders import PyPDFLoader
 
 collectionname = "buildragwithpython"
 
-chroma = chromadb.PersistentClient(path="./chromadb")
+chroma = chromadb.PersistentClient(path="./backend/app/chromadb")
 print(chroma.list_collections())
 
 if any(collection.name == collectionname for collection in chroma.list_collections()):
@@ -18,7 +18,7 @@ collection = chroma.get_or_create_collection(name=collectionname, metadata={
     })
 embedmodel = getconfig()["embedmodel"]
 
-pdf_folder = r"backend\app\sources"  
+pdf_folder = "./backend/app/sources"  
 
 starttime = time.time()
 
