@@ -1,7 +1,7 @@
 // MyAvatar.jsx
 import React from 'react';
 
-const MyAvatar = ({ alt = 'Bot Avatar' }) => {
+export const MyBotAvatar = ({ alt = 'Bot Avatar' }) => {
   return (
     <img
         src={`${process.env.PUBLIC_URL}/bot.png`}
@@ -15,4 +15,9 @@ const MyAvatar = ({ alt = 'Bot Avatar' }) => {
   );
 };
 
-export default MyAvatar;
+
+export const MyUserAvatar = () => {
+  return (
+    <div/>
+  );
+};
