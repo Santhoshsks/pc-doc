@@ -25,7 +25,7 @@ export const MyUserChatMessage = ({ message }) => {
     <div
       style={{
         maxWidth: '90%',
-        backgroundColor: '#a2a1a6',
+        backgroundColor: '#75757C',
         color: '#ffffff',
         padding: '10px 15px',
         borderRadius: '12px',
