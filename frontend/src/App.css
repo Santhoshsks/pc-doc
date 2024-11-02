@@ -1,43 +1,41 @@
 .App {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-color: #f0f0f0;
+  background-color: #e4fcff;
 }
 
 .chatbot-container {
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  max-height: 100%;
+  width: 90vw; 
+  height: 95vh;
+  margin-left: 25vw;
+  margin-right: 4vw;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .react-chatbot-kit-chat-container {
-  height: auto; 
-  width: auto;
-}
-
-
-.react-chatbot-kit-message-container {
   display: flex;
   flex-direction: column;
-  max-height: 100%; 
-  overflow-y: auto;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .react-chatbot-kit-chat-bot-message {
   padding: 10px;
   border-radius: 5px;
   font-size: 0.9rem;
-  color: #fff;
+  color: #ffffff;
   font-weight: medium;
   position: relative;
-  width: 184.5px;
   margin-right: auto;
   margin-left: 0; 
   text-align: left;
@@ -47,15 +45,56 @@
   padding: 10px;
   border-radius: 5px;
   font-size: 0.9rem;
-  color: #fff;
+  color: #ffffff;
   font-weight: medium;
   position: relative;
-  width: 184.5px;
   margin-left: auto;
   margin-right: 0; 
   text-align: left;
 }
 
+.react-chatbot-kit-chat-message-container {
+  height: 100vh;
+}
+
+.react-chatbot-kit-chat-inner-container {
+  height: 95vh;
+}
+
+.react-chatbot-kit-message-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: hidden;
+  padding: 10px;
+}
+
+.react-chatbot-kit-chat-input-container {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: #f0f0f0;
+  align-items: center;
+  position: sticky;
+}
+
+.react-chatbot-kit-chat-input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.react-chatbot-kit-chat-btn-send {
+  margin-left: 10px;
+  margin-right: 20px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer; 
+}
+
+.react-chatbot-kit-chat-btn-send:hover {
+  color: #6b91b8; 
+}
 
 
 .App-logo {
