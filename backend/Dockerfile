@@ -1,11 +1,9 @@
-# Base environment for main backend app
 FROM python:3.9 AS backend-base
 WORKDIR /app
-COPY requirements.txt . 
+
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ app/
 EXPOSE 8000
-
-FROM backend-base AS final
 
 CMD ["python3", "app/app.py"]
