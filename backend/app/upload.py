@@ -1,41 +1,42 @@
 import os
-import ollama, chromadb, time
-from utils import getconfig
-from mattsollamatools import chunker, chunk_text_by_sentences
+import time
+import ollama
+import chromadb
 from langchain_community.document_loaders import PyPDFLoader  
 
-collectionname = "buildragwithpython"
+chroma = chromadb.PersistentClient(path=r"backend\app\chromadb")
+collection_name = "cybersecurity_docs"
+collection = chroma.get_or_create_collection(name=collection_name)
 
-chroma = chromadb.PersistentClient(path="./backend/app/chromadb")
-print(chroma.list_collections())
+embed_model = "nomic-embed-text"
+pdf_folder = r"backend\app\sources"
+TOKEN_THRESHOLD = 200
 
-if any(collection.name == collectionname for collection in chroma.list_collections()):
-    print('Deleting existing collection')
-    chroma.delete_collection(collectionname)
+def split_into_chunks(text, token_limit):
+    words = text.split()
+    return [' '.join(words[i:i + token_limit]) for i in range(0, len(words), token_limit)]
 
-collection = chroma.get_or_create_collection(name=collectionname, metadata={
-        "hnsw:space": "cosine"
-    })
-embedmodel = getconfig()["embedmodel"]
-
-pdf_folder = "./backend/app/sources"  
-
-starttime = time.time()
+start_time = time.time()
 
 for filename in os.listdir(pdf_folder):
-    if filename.endswith(".pdf"):  
+    if filename.endswith(".pdf"):
         pdf_path = os.path.join(pdf_folder, filename)
         loader = PyPDFLoader(pdf_path)
-        documents = loader.load()  
+        documents = loader.load()
         
-        full_text = " ".join([doc.page_content for doc in documents])
-        
-        chunks = chunk_text_by_sentences(source_text=full_text, sentences_per_chunk=7, overlap=0)
-        print(f"Processing {filename} with {len(chunks)} chunks")
-        
-        for index, chunk in enumerate(chunks):
-            embed = ollama.embeddings(model=embedmodel, prompt=chunk)['embedding']
-            print(".", end="", flush=True)
-            collection.add([filename + str(index)], [embed], documents=[chunk], metadatas={"source": filename})
+        for doc in documents:
+            text = doc.page_content
+            chunks = split_into_chunks(text, TOKEN_THRESHOLD) if len(text.split()) > TOKEN_THRESHOLD else [text]
+            
+            for idx, chunk in enumerate(chunks):
+                chunk_id = f"{filename}_chunk_{idx}"
+                embedding = ollama.embeddings(model=embed_model, prompt=chunk)['embedding']
+                collection.add(
+                    ids=[chunk_id], 
+                    documents=[chunk], 
+                    embeddings=[embedding], 
+                    metadatas={"source": filename, "chunk_idx": idx}
+                )
 
-print("--- %s seconds ---" % (time.time() - starttime))
+print("Document upload and embedding complete.")
+print("--- %s seconds ---" % (time.time() - start_time))
