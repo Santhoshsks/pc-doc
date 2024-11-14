@@ -10,14 +10,16 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
 
     try {
-      const response = await fetch('http://localhost:5000/api/message', {
+      const response = await fetch('http://localhost:8000/api/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ message: userMessage, model: selectedModel }),
       });
-  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
       const data = await response.json();
       const finalBotMessage = createChatBotMessage(data.response);
 

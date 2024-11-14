@@ -1,48 +1,96 @@
 import streamlit as st
 import ollama
-import chromadb
-from utils import getconfig
+import time
 
-embedmodel = getconfig()["embedmodel"]
-mainmodel = getconfig()["mainmodel"]
-chroma = chromadb.HttpClient(host="localhost", port=8000)
+st.set_page_config(page_title="PC Doc - Cyber Sec Assistant")
+
+with st.sidebar:
+    st.title('PC Doc - Cyber Sec Assistant')
+    st.write('This chatbot is connected to the local Ollama model.')
+    st.success('Ollama model is configured!', icon='✅')
+    st.subheader('Models and parameters')
+    selected_model = st.selectbox('Choose a model', ['Llama3-7B', 'Mistral-7B'], key='selected_model')
+    models = {"Llama3-7B": 'llama3', "Mistral-7B": "mistral"}    
+    embedmodel = "nomic-embed-text"
+    mainmodel = models[selected_model]
+    response_time_placeholder = st.empty() 
+
+    complexity = st.slider('Select complexity level', min_value=1, max_value=5, value=3, step=1)
+    
+    def clear_chat_history():
+        st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+    st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
+
+if "messages" not in st.session_state.keys():
+    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.write(message["content"])
+
+import chromadb
+chroma = chromadb.PersistentClient(path="./chromadb")
 collection = chroma.get_or_create_collection("buildragwithpython")
 
-st.title("Cybersecurity Chatbot")
-st.write("This chatbot analyzes text input to identify potential cybersecurity threats.")
+def generate_llama2_response(prompt_input):    
+    queryembed = ollama.embeddings(model=embedmodel, prompt=prompt_input)['embedding']
+    relevantdocs = collection.query(query_embeddings=[queryembed], n_results=5)["documents"][0]
+    docs = "\n\n".join(relevantdocs)
 
-user_query = st.text_input("Describe the problem you're facing", "")
 
-if st.button("Analyze"):
-    if user_query:
-        queryembed = ollama.embeddings(model=embedmodel, prompt=user_query)['embedding']
 
-        relevant_docs = collection.query(query_embeddings=[queryembed], n_results=5)["documents"][0]
-        
-        st.subheader("Relevant Documents")
-        docs = "\n\n".join(relevant_docs)
-        st.text_area("Documents", docs, height=300)
+    modelquery = f"""
 
-        model_query = f"""
-        You are a cybersecurity assistant. Based only on the following context, determine which type of attack the user might be facing.
+    You are a cybersecurity assistant. Based only on the following context, carefully read and analyze each part 
+    of the context before determining which single type of cyber attack the user might be facing based on their query.
 
-        Context:
-        {docs}
+    Context: {docs}
 
-        ---
+    ---
+    Complexity Level: {complexity} (1=Basic, 5=Detailed)
+    
+    Given the above context, what type of cyber attack may have occurred based on the problem described in the query: '{prompt_input}'?
 
-        Given the above context, what type of cyber attack may have occurred based on the problem described: '{user_query}'?
-        """
+    After identifying the attack:
+    1. Provide a brief description of the attack and explain how it typically operates.
+    2. Describe the potential effects or impact this attack has on the victim.
+    3. Suggest practical solutions or mitigation steps to resolve or prevent the attack.
+    4. Adjust the depth of explanation according to the complexity level ({complexity}).
+    
 
-        st.subheader("Chatbot Response")
-        
-        response_text = ""
-        stream = ollama.generate(model=mainmodel, prompt=model_query, stream=True)
-        
-        for chunk in stream:
-            if chunk["response"]:
-                response_text += chunk['response']
-                st.text(response_text)  
+    Important instructions:
+    1. Carefully read and analyze all parts of the context to ensure you fully understand the situation before making a decision.
+    2. Focus on identifying one primary attack type based on the context and query.
+    3. Only mention multiple attacks if the context clearly shows evidence of more than one attack. Otherwise, focus solely on one attack.
+    4. If the query or context is not related to cybersecurity, respond with: "The query is not related to a cybersecurity issue, and I cannot provide an answer." and stop the chat, otherwise follow the below.
 
-    else:
-        st.warning("Please enter a problem description.")
+    """
+
+
+
+    start_time = time.time()
+    response = ""
+    stream = ollama.generate(model=mainmodel, prompt=modelquery, stream=True)
+
+    for chunk in stream:
+        if chunk["response"]:
+            response += chunk['response']
+        elapsed_time = time.time() - start_time
+        response_time_placeholder.write(f"Response Time: {elapsed_time:.2f} seconds")
+        time.sleep(0.1)  
+
+    return response
+
+if prompt := st.chat_input():
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.write(prompt)
+
+if st.session_state.messages[-1]["role"] != "assistant":
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            response = generate_llama2_response(prompt)
+            placeholder = st.empty()
+            placeholder.markdown(response)
+    message = {"role": "assistant", "content": response}
+    st.session_state.messages.append(message)
