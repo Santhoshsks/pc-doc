@@ -4,7 +4,12 @@ import time
 import faiss
 import numpy as np
 import chromadb
+import os
+from deepeval import evaluate
+from deepeval.test_case import LLMTestCase
+from deepeval.metrics import AnswerRelevancyMetric, FaithfulnessMetric, ContextualRelevancyMetric
 
+api_key = os.getenv("OPENAI_API_KEY")
 st.set_page_config(page_title="PC Doc - Cyber Sec Assistant")
 
 with st.sidebar:
@@ -86,8 +91,8 @@ def jaccard_search(query, top_k=5):
 def generate_response(prompt_input):    
     queryembed = ollama.embeddings(model=embedmodel, prompt=prompt_input)['embedding']
     #relevantdocs = ann_search(prompt_input) # ANN using FAISS
-    #relevantdocs = jaccard_search(prompt_input) 
-    relevantdocs = collection.query(query_embeddings=[queryembed], n_results=5)["documents"][0]
+    relevantdocs = jaccard_search(prompt_input) 
+    #relevantdocs = collection.query(query_embeddings=[queryembed], n_results=5)["documents"][0]
     print(relevantdocs)
     docs = "\n\n".join(relevantdocs)
 
@@ -130,6 +135,13 @@ def generate_response(prompt_input):
         elapsed_time = time.time() - start_time
         response_time_placeholder.write(f"Response Time: {elapsed_time:.2f} seconds")
         time.sleep(0.1)  
+    answer_relevancy = AnswerRelevancyMetric()
+    faithfulness = FaithfulnessMetric()
+    contextual_relevancy = ContextualRelevancyMetric()
+
+    test_case = LLMTestCase(input=prompt_input, actual_output=response, retrieval_context=[docs])
+    evaluate(test_cases=[test_case], metrics=[answer_relevancy, faithfulness, contextual_relevancy])
+
 
     return response
 
