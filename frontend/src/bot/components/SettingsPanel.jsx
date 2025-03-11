@@ -86,7 +86,7 @@ function SettingsPanel({ onClose }) {
             ))}
           </div>
           <p className={styles.modelDescription}>
-            Select the AI model that best suits your cybersecurity analysis needs.
+            Select the AI model that best suits your needs.
           </p>
         </section>
 
@@ -140,9 +140,12 @@ function SettingsPanel({ onClose }) {
               setContextSize(10);
             }}
           >
-            Reset
+            Reset 
           </button>
-          <button className={styles.applyButton}>Apply Settings</button>
+
+          <button className={styles.applyButton}>
+            Apply Settings
+          </button>
         </div>
       </div>
     </aside>
