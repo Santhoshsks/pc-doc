@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./InputDesign.module.css";
 
-function ChatControls({ onSettingsClick, messages, setMessages }) {
+function ChatControls({ onSettingsClick, messages, setMessages, showInput = true }) {
   const [userInput, setUserInput] = useState("");
   const chatEndRef = useRef(null);
 
@@ -45,29 +45,32 @@ function ChatControls({ onSettingsClick, messages, setMessages }) {
           <div ref={chatEndRef}></div>
         </div>
 
-        <div className={styles.chatInputWrapper}>
-          <textarea
-            className={styles.chatInput}
-            placeholder="Type your cybersecurity question here..."
-            rows={2}
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-              }
-            }}
-          />
-          <div className={styles.chatActions}>
-            <button className={styles.settingsButton} onClick={onSettingsClick}>
-              Settings
-            </button>
-            <button className={styles.sendButton} onClick={handleSend}>
-              Send
-            </button>
+        {showInput && (
+          <div className={styles.chatInputWrapper}>
+            <textarea
+              className={styles.chatInput}
+              placeholder="Type your cybersecurity question here..."
+              rows={2}
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSend();
+                }
+              }}
+            />
+            <div className={styles.chatActions}>
+              <button className={styles.settingsButton} onClick={onSettingsClick}>
+                Settings
+              </button>
+              <button className={styles.sendButton} onClick={handleSend}>
+                Send
+              </button>
+            </div>
           </div>
-        </div>
+        )}
+
       </div>
     </section>
   );

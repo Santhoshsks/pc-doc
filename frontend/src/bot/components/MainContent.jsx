@@ -36,12 +36,13 @@ function MainContent({ onSettingsClick, messages, setMessages }) {
           </div>
         </div>
 
-        {activeTab === "CHAT" && (
+        {(activeTab === "CHAT" || activeTab === "HISTORY") && (
           <div className={styles.chatContainer}>
             <ChatControls
               onSettingsClick={onSettingsClick}
               messages={messages}
               setMessages={setMessages}
+              showInput={activeTab === "CHAT"}
             />
           </div>
         )}
