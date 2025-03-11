@@ -2,15 +2,8 @@ import React, { useState } from "react";
 import styles from "./InputDesign.module.css";
 import ChatControls from "./ChatControls";
 
-function MainContent({ onSettingsClick }) {
+function MainContent({ onSettingsClick, messages, setMessages }) {
   const [activeTab, setActiveTab] = useState("CHAT");
-
-  // Example message array — replace with your actual chat state later
-  const [messages, setMessages] = useState([
-    { type: "bot", text: "👋 Hi, I'm PC-DOC. Ask me anything about cybersecurity!" },
-    { type: "user", text: "Tell me about CVE-2023-12345" },
-    { type: "bot", text: "CVE-2023-12345 is a remote code execution vulnerability..." }
-  ]);
 
   return (
     <main className={styles.mainContent}>
@@ -45,26 +38,17 @@ function MainContent({ onSettingsClick }) {
 
         {activeTab === "CHAT" && (
           <div className={styles.chatContainer}>
-            <div className={styles.chatMessages}>
-              {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={
-                    msg.type === "bot" ? styles.botMessage : styles.userMessage
-                  }
-                >
-                  {msg.text}
-                </div>
-              ))}
-            </div>
-            <div className={styles.chatInputWrapper}>
-              <ChatControls onSettingsClick={onSettingsClick} activeTab={activeTab} />
-            </div>
+            <ChatControls
+              onSettingsClick={onSettingsClick}
+              messages={messages}
+              setMessages={setMessages}
+            />
           </div>
         )}
       </section>
     </main>
   );
 }
+
 
 export default MainContent;

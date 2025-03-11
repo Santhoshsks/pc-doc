@@ -1,39 +1,46 @@
 import React from "react";
 import styles from "./InputDesign.module.css";
 
-function Sidebar() {
+function Sidebar({ onSettingsClick, onResetChat }) {
   return (
     <nav className={styles.sidebar} aria-label="Main navigation">
-      <button className={styles.pauseButton} aria-label="Pause">
-        <i className="ti ti-player-pause" aria-hidden="true"></i>
+      <button
+        className={styles.plusButton}
+        aria-label="New Chat"
+        onClick={onResetChat}
+        title="Start New Chat"
+      >
+        <i className="ti ti-plus" aria-hidden="true"></i>
       </button>
-      <div className={styles.sidebarIcons}>
-        <button className={styles.iconItem} aria-label="Microphone">
-          <i className="ti ti-microphone" aria-hidden="true"></i>
-        </button>
-        <button className={styles.iconItem} aria-label="Users">
-          <i className="ti ti-users" aria-hidden="true"></i>
-        </button>
-        <button className={styles.iconItem} aria-label="Language">
-          <i className="ti ti-language" aria-hidden="true"></i>
-        </button>
-        <button className={styles.iconItem} aria-label="Volume">
-          <i className="ti ti-volume" aria-hidden="true"></i>
-        </button>
-      </div>
+
       <div className={styles.bottomIcons}>
-        <button className={styles.iconItem} aria-label="Circle">
-          <i className="ti ti-circle" aria-hidden="true"></i>
+        <button className={styles.iconItem} aria-label="Settings" title="Settings" onClick={onSettingsClick}>
+          <i className="ti ti-settings" aria-hidden="true"></i>
         </button>
-        <button className={styles.iconItem} aria-label="Square">
-          <i className="ti ti-square" aria-hidden="true"></i>
+        <button className={styles.iconItem} aria-label="Messages" title="Messages">
+          <i className="ti ti-message-circle" aria-hidden="true"></i>
         </button>
-        <button className={styles.iconItem} aria-label="Heart">
-          <i className="ti ti-heart" aria-hidden="true"></i>
+        <button className={styles.iconItem} aria-label="Security" title="Security">
+          <i className="ti ti-shield-lock" aria-hidden="true"></i>
         </button>
-        <button className={styles.iconItemavatar} aria-label="Profile">
+        <button className={styles.iconItem} aria-label="Language Settings" title="Language">
+          <i className="ti ti-globe" aria-hidden="true"></i>
+        </button>
+        <button className={styles.iconItem} aria-label="System Activity" title="System Activity">
+          <i className="ti ti-activity" aria-hidden="true"></i>
+        </button>
+        <button className={styles.iconItem} aria-label="Dummy" title="Dummy">
+          <i className="ti ti-file-shield" aria-hidden="true"></i>
+        </button>
+        <button className={styles.iconItem} aria-label="Dummy" title="Dummy">
+          <i className="ti ti-file-shield" aria-hidden="true"></i>
+        </button>
+        <button className={styles.iconItem} aria-label="Help Center" title="Help Center">
+          <i className="ti ti-help-circle" aria-hidden="true"></i>
+        </button>
+        <button className={styles.iconItemavatar} aria-label="Profile" title="Profile">
           <img
-            src="https://placehold.co/32x32/e1e1e1/e1e1e1"
+            src="bot.png"
             alt="User avatar"
             className={styles.img}
           />

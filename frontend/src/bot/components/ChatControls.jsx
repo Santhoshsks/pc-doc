@@ -2,14 +2,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./InputDesign.module.css";
 
-function ChatControls({ onSettingsClick, activeTab }) {
+function ChatControls({ onSettingsClick, messages, setMessages }) {
   const [userInput, setUserInput] = useState("");
-  const [chatHistory, setChatHistory] = useState([]);
   const chatEndRef = useRef(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chatHistory]);
+  }, [messages]);
 
   const handleSend = () => {
     if (!userInput.trim()) return;
@@ -20,7 +19,7 @@ function ChatControls({ onSettingsClick, activeTab }) {
       text: `🔍 Analyzing... Based on your query: "${userInput}", here’s a recommendation: Always use strong passwords, avoid public Wi-Fi for sensitive transactions, and monitor your system for unusual activity.`,
     };
 
-    setChatHistory((prev) => [...prev, userMessage, botReply]);
+    setMessages((prev) => [...prev, userMessage, botReply]);
     setUserInput("");
   };
 
@@ -28,7 +27,7 @@ function ChatControls({ onSettingsClick, activeTab }) {
     <section className={styles.chatControls} aria-label="PC-DOC Chat Interface">
       <div className={styles.chatContainer}>
         <div className={styles.chatMessages}>
-          {chatHistory.map((msg, index) => (
+          {messages.map((msg, index) => (
             <div
               key={index}
               className={
@@ -38,7 +37,7 @@ function ChatControls({ onSettingsClick, activeTab }) {
               }
             >
               <div className={styles.chatSender}>
-                {msg.sender === "user" ? "You" : "🛡️ PC-DOC"}
+                {msg.sender === "user" ? "You" : "PC-DOC"}
               </div>
               <div className={styles.chatText}>{msg.text}</div>
             </div>

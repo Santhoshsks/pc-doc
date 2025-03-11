@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./InputDesign.module.css";
 
-// Custom slider component to replace the existing Slider
+// EnhancedSlider component remains unchanged
 const EnhancedSlider = ({ 
   min = 1, 
   max = 5, 
@@ -51,10 +51,18 @@ const EnhancedSlider = ({
   );
 };
 
-function SettingsPanel({ onClose }) {
-  const [selectedModel, setSelectedModel] = useState("Llama3-7B");
-  const [complexity, setComplexity] = useState(3);
-  const [contextSize, setContextSize] = useState(10);
+function SettingsPanel({ onClose, onApply, initialSettings }) {
+  const [selectedModel, setSelectedModel] = useState(initialSettings?.selectedModel || "Llama3-7B");
+  const [complexity, setComplexity] = useState(initialSettings?.complexity || 3);
+  const [contextSize, setContextSize] = useState(initialSettings?.contextSize || 10);
+
+  const handleApplyClick = () => {
+    onApply({
+      selectedModel,
+      complexity,
+      contextSize,
+    });
+  };
 
   return (
     <aside className={styles.settingsPanel} aria-label="Settings panel">
@@ -68,6 +76,7 @@ function SettingsPanel({ onClose }) {
           <i className="ti ti-x" aria-hidden="true"></i>
         </button>
       </div>
+
       <div>
         <section className={styles.modelSection}>
           <h3 className={styles.sectionTitle}>Model Selection</h3>
@@ -75,9 +84,7 @@ function SettingsPanel({ onClose }) {
             {["Llama3-7B", "Mistral-7B", "Deepseek r1"].map((model) => (
               <button
                 key={model}
-                className={`${styles.modelSelectorButton} ${
-                  selectedModel === model ? styles.modelSelectorButtonSelected : ""
-                }`}
+                className={`${styles.modelSelectorButton} ${selectedModel === model ? styles.modelSelectorButtonSelected : ""}`}
                 onClick={() => setSelectedModel(model)}
                 aria-pressed={selectedModel === model}
               >
@@ -114,21 +121,20 @@ function SettingsPanel({ onClose }) {
         </section>
 
         <section className={styles.contextSection}>
-          <h3 className={styles.sectionTitle}>Context Size (k)</h3>
+          <h3 className={styles.sectionTitle}>Context Size</h3>
           <div className={styles.sliderHeader}>
             <span className={styles.sliderLabel}>5</span>
             <span className={styles.currentValue}>{contextSize}</span>
-            <span className={styles.sliderLabel}>20</span>
+            <span className={styles.sliderLabel}>15</span>
           </div>
           <EnhancedSlider 
             min={5} 
-            max={20}
+            max={15}
             value={contextSize} 
             onChange={setContextSize}
             showMarkers={false}
             ariaLabel="Context size setting" 
           />
-          
         </section>
 
         <div className={styles.buttonGroup}>
@@ -137,13 +143,13 @@ function SettingsPanel({ onClose }) {
             onClick={() => {
               setSelectedModel("Llama3-7B");
               setComplexity(3);
-              setContextSize(10);
+              setContextSize(5);
             }}
           >
-            Reset 
+            Reset
           </button>
 
-          <button className={styles.applyButton}>
+          <button className={styles.applyButton} onClick={handleApplyClick}>
             Apply Settings
           </button>
         </div>
