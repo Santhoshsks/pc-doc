@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./InputDesign.module.css";
 import ChatControls from "./ChatControls";
 
-function MainContent({ onSettingsClick, messages, setMessages }) {
+function MainContent({ onSettingsClick, messages, setMessages, settings }) {
   const [activeTab, setActiveTab] = useState("CHAT");
 
   return (
@@ -42,6 +42,7 @@ function MainContent({ onSettingsClick, messages, setMessages }) {
               onSettingsClick={onSettingsClick}
               messages={messages}
               setMessages={setMessages}
+              settings={settings}
               showInput={activeTab === "CHAT"}
             />
           </div>

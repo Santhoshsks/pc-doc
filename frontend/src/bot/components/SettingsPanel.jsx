@@ -143,7 +143,7 @@ function SettingsPanel({ onClose, onApply, initialSettings }) {
             onClick={() => {
               setSelectedModel("Llama3-7B");
               setComplexity(3);
-              setContextSize(5);
+              setContextSize(10);
             }}
           >
             Reset
