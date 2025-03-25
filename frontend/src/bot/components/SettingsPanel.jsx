@@ -81,7 +81,7 @@ function SettingsPanel({ onClose, onApply, initialSettings }) {
         <section className={styles.modelSection}>
           <h3 className={styles.sectionTitle}>Model Selection</h3>
           <div className={styles.modelSelectorContainer}>
-            {["Llama3-7B", "Mistral-7B", "Deepseek r1"].map((model) => (
+            {["Llama3-7B", "Mistral-7B", "Deepseek-R1"].map((model) => (
               <button
                 key={model}
                 className={`${styles.modelSelectorButton} ${selectedModel === model ? styles.modelSelectorButtonSelected : ""}`}
@@ -143,7 +143,7 @@ function SettingsPanel({ onClose, onApply, initialSettings }) {
             onClick={() => {
               setSelectedModel("Llama3-7B");
               setComplexity(3);
-              setContextSize(5);
+              setContextSize(10);
             }}
           >
             Reset

@@ -1,26 +1,67 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./InputDesign.module.css";
+import FormattedBotMessage from "./FormattedBotMessage";
 
-function ChatControls({ onSettingsClick, messages, setMessages }) {
+function ChatControls({ onSettingsClick, messages, setMessages, showInput = true, settings }) {
   const [userInput, setUserInput] = useState("");
   const chatEndRef = useRef(null);
+
+  const sendMessageToApi = async ({ message, model, complexity, top_k }) => {
+    try {
+      const response = await fetch("http://localhost:8000/api/message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: message,
+          model: model,
+          complexity: complexity,
+          top_k: top_k,
+        }),
+      });
+
+      const data = await response.json();
+      return data.response;
+    } catch (error) {
+      console.error("API error:", error);
+      return "! Something went wrong. Please try again later.";
+    }
+  };
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSend = () => {
-    if (!userInput.trim()) return;
+  const handleSendMessage = async () => {
+    const trimmedMessage = userInput.trim();
+    if (!trimmedMessage) return;
 
-    const userMessage = { sender: "user", text: userInput };
-    const botReply = {
-      sender: "pc-doc",
-      text: `🔍 Analyzing... Based on your query: "${userInput}", here’s a recommendation: Always use strong passwords, avoid public Wi-Fi for sensitive transactions, and monitor your system for unusual activity.`,
-    };
+    setMessages((prev) => [...prev, { type: "user", text: trimmedMessage }]);
 
-    setMessages((prev) => [...prev, userMessage, botReply]);
-    setUserInput("");
+    setMessages((prev) => [...prev, { type: "bot", text: "🤖 Thinking..." }]);
+    setUserInput(""); 
+
+    const botResponse = await sendMessageToApi({
+      message: trimmedMessage,
+      model: settings.selectedModel,
+      complexity: settings.complexity,
+      top_k: settings.contextSize,
+    });
+
+    setMessages((prev) => {
+      const updated = [...prev];
+      updated[updated.length - 1] = { type: "bot", text: botResponse };
+      return updated;
+    });
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSendMessage();
+    }
   };
 
   return (
@@ -31,43 +72,46 @@ function ChatControls({ onSettingsClick, messages, setMessages }) {
             <div
               key={index}
               className={
-                msg.sender === "user"
+                msg.type === "user"
                   ? styles.chatBubbleUser
                   : styles.chatBubbleBot
               }
             >
               <div className={styles.chatSender}>
-                {msg.sender === "user" ? "You" : "PC-DOC"}
+                {msg.type === "user" ? "You" : "PC-DOC"}
               </div>
-              <div className={styles.chatText}>{msg.text}</div>
+              <div className={styles.chatText}>
+                {msg.type === "bot" ? (
+                  <FormattedBotMessage text={msg.text} />
+                ) : (
+                  msg.text
+                )}
+              </div>
             </div>
           ))}
           <div ref={chatEndRef}></div>
         </div>
 
-        <div className={styles.chatInputWrapper}>
-          <textarea
-            className={styles.chatInput}
-            placeholder="Type your cybersecurity question here..."
-            rows={2}
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-              }
-            }}
-          />
-          <div className={styles.chatActions}>
-            <button className={styles.settingsButton} onClick={onSettingsClick}>
-              Settings
-            </button>
-            <button className={styles.sendButton} onClick={handleSend}>
-              Send
-            </button>
+        {showInput && (
+          <div className={styles.chatInputWrapper}>
+            <textarea
+              className={styles.chatInput}
+              placeholder="Type your cybersecurity question here..."
+              rows={3}
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              onKeyDown={handleKeyPress}
+            />
+            <div className={styles.chatActions}>
+              <button className={styles.settingsButton} onClick={onSettingsClick}>
+                Settings
+              </button>
+              <button className={styles.sendButton} onClick={handleSendMessage}>
+                Send
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

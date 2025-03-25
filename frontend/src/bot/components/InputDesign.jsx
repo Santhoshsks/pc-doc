@@ -42,7 +42,11 @@ function InputDesign() {
       />
       <div className={styles.appContainer}>
         <Sidebar onSettingsClick={toggleSettings} onResetChat={handleResetChat} />
-        <MainContent onSettingsClick={toggleSettings} messages={messages} setMessages={setMessages} />
+        <MainContent 
+            onSettingsClick={toggleSettings} 
+            messages={messages}
+            settings={settings} 
+            setMessages={setMessages} />
         {showSettings && (
           <SettingsPanel
             onClose={toggleSettings}
