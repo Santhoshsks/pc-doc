@@ -26,7 +26,11 @@ function ChatControls({ onSettingsClick, messages, setMessages, showInput = true
       return data.response;
     } catch (error) {
       console.error("API error:", error);
+<<<<<<< HEAD
       return "! Something went wrong. Please try again later.";
+=======
+      return "⚠️ Something went wrong. Please try again later.";
+>>>>>>> 1ab7041af1887ebde6bbeb31d522daf84b5fab39
     }
   };
 
@@ -79,6 +83,7 @@ function ChatControls({ onSettingsClick, messages, setMessages, showInput = true
             >
               <div className={styles.chatSender}>
                 {msg.type === "user" ? "You" : "PC-DOC"}
+<<<<<<< HEAD
               </div>
               <div className={styles.chatText}>
                 {msg.type === "bot" ? (
@@ -86,6 +91,8 @@ function ChatControls({ onSettingsClick, messages, setMessages, showInput = true
                 ) : (
                   msg.text
                 )}
+=======
+>>>>>>> 1ab7041af1887ebde6bbeb31d522daf84b5fab39
               </div>
             </div>
           ))}

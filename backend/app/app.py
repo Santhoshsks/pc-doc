@@ -14,7 +14,6 @@ collection1 = chroma_cve.get_collection(name="cybersecurity_docs")
 collection2 = chroma_docs.get_collection(name="cybersecurity_docs")
 print("ChromaDB collection1 count:", len(collection1.get()["documents"]))
 print("ChromaDB collection2 count:", len(collection2.get()["documents"]))
-
 # colbert_model_name = "colbert-ir/colbertv2.0"
 # tokenizer = AutoTokenizer.from_pretrained(colbert_model_name)
 # colbert = AutoModel.from_pretrained(colbert_model_name).to("cuda" if torch.cuda.is_available() else "cpu")
@@ -97,7 +96,7 @@ def search_rag(query, selected_model, complexity=3, top_k=15, rerank_top_n=5):
     selected_complexity = complexity_description[complexity]
     context = "\n".join(top_docs)
     response = ""
-    #print(context)
+    print(context)
     newcontext = "\n".join(top_docs[:4])
     modelquery = f"""
     Important instructions:
