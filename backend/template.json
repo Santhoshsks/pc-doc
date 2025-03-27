@@ -1,0 +1,55 @@
+[{ 
+    "config": {
+        "complexity": 1,
+        "model": "MODEL_NAME",
+        "search": "SEARCH_METHOD",
+        "k": "K_VALUE"
+    },
+    "test_case": {
+        "input": "USER_QUERY",
+        "expected_output": "EXPECTED_RESPONSE"
+    },
+    "response": "MODEL_RESPONSE",
+    "metrics_data": [
+        {
+            "name": "METRIC_NAME",
+            "threshold": "THRESHOLD_VALUE",
+            "success": "BOOLEAN",
+            "score": "SCORE_VALUE",
+            "reason": "EXPLANATION_OF_SCORE",
+            "strict_mode": "BOOLEAN",
+            "evaluation_model": "EVALUATION_MODEL_NAME",
+            "error": null,
+            "evaluation_cost": "COST_VALUE",
+            "verbose_logs": "DETAILED_LOGS"
+        }
+    ]
+},
+{
+    "config": {
+        "complexity": 2,
+        "model": "MODEL_NAME",
+        "search": "SEARCH_METHOD",
+        "k": "K_VALUE"
+    },
+    "test_case": {
+        "input": "USER_QUERY",
+        "expected_output": "EXPECTED_RESPONSE"
+    },
+    "response": "MODEL_RESPONSE",
+    "metrics_data": [
+        {
+            "name": "METRIC_NAME",
+            "threshold": "THRESHOLD_VALUE",
+            "success": "BOOLEAN",
+            "score": "SCORE_VALUE",
+            "reason": "EXPLANATION_OF_SCORE",
+            "strict_mode": "BOOLEAN",
+            "evaluation_model": "EVALUATION_MODEL_NAME",
+            "error": null,
+            "evaluation_cost": "COST_VALUE",
+            "verbose_logs": "DETAILED_LOGS"
+        }
+    ]
+}
+] 
